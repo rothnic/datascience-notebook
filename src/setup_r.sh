@@ -16,21 +16,21 @@ local({r <- getOption('repos')
 R_PATH=$PREFIX/envs/r
 
 # fix issue with compilation
-mv $R_PATH/lib/libstdc++.so.6 $R_PATH/lib/libstdc++.so.6.orig
-ln -s /usr/lib/libstdc++.so.6.0.14 $R_PATH/lib/libstdc++.so.6
+#mv $R_PATH/lib/libstdc++.so.6 $R_PATH/lib/libstdc++.so.6.orig
+#ln -s /usr/lib/libstdc++.so.6.0.14 $R_PATH/lib/libstdc++.so.6
 
 # make sure R can find ipython
-ln -s $PY3PATH/ipython $R_PATH/bin/ipython
+#ln -s $PY3PATH/ipython $R_PATH/bin/ipython
 
-$R_PATH/bin/R CMD BATCH /tmp/install_r_packages.R
-$R_PATH/bin/R CMD BATCH /tmp/install_r_packages.R
+#$R_PATH/bin/R CMD BATCH /tmp/install_r_packages.R
+#$R_PATH/bin/R CMD BATCH /tmp/install_r_packages.R
 #tail -f ./install_r_packages.Rout
 
-$PY3PATH/ipython kernelspec install --replace --name ir \
- --user /home/condauser/anaconda3/envs/r/lib/R/library/IRkernel/kernelspec
+#$PY3PATH/ipython kernelspec install --replace --name ir \
+# --user /home/condauser/anaconda3/envs/r/lib/R/library/IRkernel/kernelspec
 
 cp /tmp/kernel.json /home/condauser/.ipython/kernels/ir/kernel.json
-chown condauser:condauser /home/condauser -R
+#chown condauser:condauser /home/condauser -R
 
 # works second time for some reason
-$R_PATH/bin/R CMD BATCH /tmp/add_kernel.R
+$PY3PATH/bin/R CMD BATCH /tmp/add_kernel.R

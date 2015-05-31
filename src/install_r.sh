@@ -6,4 +6,4 @@ PY3PATH=$PREFIX/bin
 CONDA3=$PY3PATH/conda
 
 # install r in environment named 'r' and accept all
-$CONDA3 create --yes -c r -n r r r-rcurl r-devtools
+$CONDA3 install --yes -c r r r-rcurl r-devtools r-irkernel
