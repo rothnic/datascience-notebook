@@ -13,7 +13,7 @@ local({r <- getOption('repos')
 })" >> $HOME/.Rprofile
 
 # create reference to R in environment and install r packages
-R_PATH=$PREFIX/envs/r
+#R_PATH=$PREFIX/envs/r
 
 # fix issue with compilation
 #mv $R_PATH/lib/libstdc++.so.6 $R_PATH/lib/libstdc++.so.6.orig
@@ -29,8 +29,10 @@ R_PATH=$PREFIX/envs/r
 #$PY3PATH/ipython kernelspec install --replace --name ir \
 # --user /home/condauser/anaconda3/envs/r/lib/R/library/IRkernel/kernelspec
 
-cp /tmp/kernel.json /home/condauser/.ipython/kernels/ir/kernel.json
+
 #chown condauser:condauser /home/condauser -R
 
 # works second time for some reason
-$PY3PATH/bin/R CMD BATCH /tmp/add_kernel.R
+$PY3PATH/R CMD BATCH /tmp/add_kernel.R
+
+cp /tmp/kernel.json /home/condauser/.ipython/kernels/ir/kernel.json
