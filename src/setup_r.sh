@@ -12,27 +12,9 @@ local({r <- getOption('repos')
        options(repos=r)
 })" >> $HOME/.Rprofile
 
-# create reference to R in environment and install r packages
-#R_PATH=$PREFIX/envs/r
+# create the R kernel
+$PY3PATH/ipython kernelspec install --replace --name ir \
+ --user /home/condauser/anaconda3/lib/R/library/IRkernel/kernelspec
 
-# fix issue with compilation
-#mv $R_PATH/lib/libstdc++.so.6 $R_PATH/lib/libstdc++.so.6.orig
-#ln -s /usr/lib/libstdc++.so.6.0.14 $R_PATH/lib/libstdc++.so.6
-
-# make sure R can find ipython
-#ln -s $PY3PATH/ipython $R_PATH/bin/ipython
-
-#$R_PATH/bin/R CMD BATCH /tmp/install_r_packages.R
-#$R_PATH/bin/R CMD BATCH /tmp/install_r_packages.R
-#tail -f ./install_r_packages.Rout
-
-#$PY3PATH/ipython kernelspec install --replace --name ir \
-# --user /home/condauser/anaconda3/envs/r/lib/R/library/IRkernel/kernelspec
-
-
-#chown condauser:condauser /home/condauser -R
-
-# works second time for some reason
-$PY3PATH/R CMD BATCH /tmp/add_kernel.R
-
+# include a modified kernel that points to R within conda structure
 cp /tmp/kernel.json /home/condauser/.ipython/kernels/ir/kernel.json
